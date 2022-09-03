@@ -7,9 +7,9 @@ import '../model/post.dart';
 
 class Net {
   static String base = 'dummy.restapiexample.com';
- // static Map<String, String> headers = {
- //    'Content-type': 'application/json; charset=UTF-8'
- //  };
+ static Map<String, String> headers = {
+    'Content-type': 'application/json; charset=UTF-8'
+  };
 
   //https APIs
   static String Api_list = '/api/v1/employees';
@@ -22,7 +22,7 @@ class Net {
 //http requests
   static Future<String?> GET(String api, Map<String, String> params) async {
     var uri = Uri.https(base, api, params);
-    var response = await get(uri,);
+    var response = await get(uri, headers: headers);
     if (response.statusCode == 200) {
       return response.body;
     }
@@ -40,7 +40,7 @@ class Net {
 
   static Future<String?> POST(String api, Map<String, String> params) async {
     var uri = Uri.https(base, api);
-    var response = await post(uri, body: jsonEncode(params));
+    var response = await post(uri, headers: headers, body: jsonEncode(params));
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response.body;
     }
@@ -48,7 +48,7 @@ class Net {
   }
   static Future<String?> PUT(String api, Map<String, String> params) async {
     var uri = Uri.https(base, api);
-    var response = await put(uri, body: jsonEncode(params));
+    var response = await put(uri, headers: headers, body: jsonEncode(params));
     if (response.statusCode == 200) {
       return response.body;
     }
@@ -56,7 +56,7 @@ class Net {
   }
   static Future<String?> DELETE(String api, Map<String, String> params) async {
     var uri = Uri.https(base, api);
-    var response = await delete(uri,);
+    var response = await delete(uri, headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response.body;
     }

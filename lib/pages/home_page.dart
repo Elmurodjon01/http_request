@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
   void _apiDeletePost (Employee employee){
-    Net.DELETE(Net.Api_delete + employee.id.toString(), Net.paramsEmpty()).then((response) => {
+    Net.DELETE(Net.Api_delete, Net.paramsEmpty()).then((response) => {
       print(response),
       _showResponse(response!),
     });
@@ -52,20 +52,23 @@ setState(() {
   @override
   void initState() {
     super.initState();
-   // var post = Post(id: 1, title: 'inha', body: 'online', userId: 12);
-    _apiPostList();
+var employee = Employee(id: 22, employee_name: 'Elmurodjon', employee_salary: 2000000, employee_age: 22, profile_image: 'none given', message: 'never give up');
+    _apiCreatePost(employee);
   }
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Center(
-            //not equal to
-            child: Column(
-              children: [
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 20),
+            child: Center(
+              //not equal to
+              child: Column(
+                children: [
 
-                Text(data),
-              ],
+                  Text(data),
+                ],
+              ),
             ),
           ),
         ),
