@@ -55,7 +55,7 @@ class Net {
     return null;
   }
   static Future<String?> DELETE(String api, Map<String, String> params) async {
-    var uri = Uri.https(base, api);
+    var uri = Uri.https(base, api, params);
     var response = await delete(uri, headers: headers);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response.body;
